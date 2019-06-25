@@ -531,6 +531,7 @@ bool HalManifest::checkCompatibility(const CompatibilityMatrix& mat, std::string
         }
     } else if (mType == SchemaType::DEVICE) {
         bool sepolicyMatch = false;
+        if (mat.framework.mSepolicy.sepolicyVersions().size() == 0) sepolicyMatch = true;
         for (const auto &range : mat.framework.mSepolicy.sepolicyVersions()) {
             if (range.supportedBy(device.mSepolicyVersion)) {
                 sepolicyMatch = true;
